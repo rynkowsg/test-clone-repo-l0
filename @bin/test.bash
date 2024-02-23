@@ -32,3 +32,6 @@ echo "Running: ${REPO_DIR}/test/test_content.bats..."
 if [ "${SUBMODULES_ENABLED}" = 1 ]; then
   "${REPO_DIR}/refs/repo-l1/@bin/test.bash"
 fi
+if [ "${SUBMODULES_ENABLED}" = 1 ] && [ "${LFS_ENABLED}" = 1 ]; then
+  "${REPO_DIR}/refs/repo-l1-lfs/@bin/test.bash"
+fi
