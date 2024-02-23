@@ -5,8 +5,10 @@
 #
 # Example calls:
 #
-#     SUBMODULES_ENABLED=0 ./@bin/test.bash
-#     SUBMODULES_ENABLED=1 ./@bin/test.bash
+#     LFS_ENABLED=0 SUBMODULES_ENABLED=0 ./@bin/test.bash
+#     LFS_ENABLED=0 SUBMODULES_ENABLED=1 ./@bin/test.bash
+#     LFS_ENABLED=1 SUBMODULES_ENABLED=0 ./@bin/test.bash
+#     LFS_ENABLED=1 SUBMODULES_ENABLED=1 ./@bin/test.bash
 #
 ###
 
@@ -17,6 +19,9 @@ SCRIPT_PATH="$([ -L "$0" ] && readlink "$0" || echo "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${SCRIPT_PATH}")" || exit 1; pwd -P)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/.." || exit 1; pwd -P)"
 # detect REPO_DIR - end
+
+# LFS_ENABLED - Git LFS support, if not specified, set to false
+LFS_ENABLED=${LFS_ENABLED:-0}
 
 # SUBMODULES_ENABLED - submodules support, if not specified, set to false
 SUBMODULES_ENABLED=${SUBMODULES_ENABLED:-0}
